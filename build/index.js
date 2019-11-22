@@ -150,6 +150,222 @@ registerBlockType('podkit/static', {
 
 /***/ }),
 
+/***/ "./src/02-editable/index.js":
+/*!**********************************!*\
+  !*** ./src/02-editable/index.js ***!
+  \**********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bv_logo_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../bv-logo.svg */ "./src/bv-logo.svg");
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var RichText = wp.editor.RichText;
+
+
+registerBlockType('podkit/editable', {
+  title: __('Custom Title', 'podkit'),
+  icon: {
+    src: _bv_logo_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"]
+  },
+  category: 'podkit',
+  attributes: {
+    episodeTitle: {
+      type: 'string',
+      source: 'html',
+      selector: '.podkit-title'
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        episodeTitle = props.attributes.episodeTitle,
+        setAttributes = props.setAttributes;
+
+    var onChangeEpisodeTtitle = function onChangeEpisodeTtitle(newEpisodeTitle) {
+      setAttributes({
+        episodeTitle: newEpisodeTitle
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "".concat(className, " podkit-block podkit-static")
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figure", {
+      className: "podkit-logo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: _bv_logo_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
+      alt: "logo"
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-info"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-nameplate"
+    }, __('The Binaryville Podcast', 'podkit')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-title"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      placeholder: __('Enter your title', 'podkit'),
+      value: episodeTitle,
+      onChange: onChangeEpisodeTtitle,
+      tagName: "h4"
+    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-cta"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: "#"
+    }, __('Like & Subscribe', 'podkit'))));
+  },
+  save: function save(props) {
+    var episodeTitle = props.attributes.episodeTitle;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-block podkit-static"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figure", {
+      className: "podkit-logo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: _bv_logo_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
+      alt: "logo"
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-info"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-nameplate"
+    }, __('The Binaryville Podcast', 'podkit')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-title"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      tagName: "h4",
+      value: episodeTitle
+    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-cta"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: "#"
+    }, __('Like & Subscribe', 'podkit'))));
+  }
+});
+
+/***/ }),
+
+/***/ "./src/03-media/index.js":
+/*!*******************************!*\
+  !*** ./src/03-media/index.js ***!
+  \*******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bv_logo_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../bv-logo.svg */ "./src/bv-logo.svg");
+/* harmony import */ var _bv_logo_white_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../bv-logo-white.svg */ "./src/bv-logo-white.svg");
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$editor = wp.editor,
+    MediaUpload = _wp$editor.MediaUpload,
+    RichText = _wp$editor.RichText;
+var Button = wp.components.Button;
+
+
+registerBlockType('podkit/media', {
+  title: __('Custom Media & Title', 'podkit'),
+  icon: {
+    src: _bv_logo_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"]
+  },
+  category: 'podkit',
+  attributes: {
+    episodeTitle: {
+      type: 'string',
+      source: 'html',
+      selector: '.podkit-title'
+    },
+    episodeImage: {
+      type: 'string',
+      source: 'attribute',
+      selector: '.podkit-logo img',
+      attribute: 'src',
+      default: _bv_logo_white_svg__WEBPACK_IMPORTED_MODULE_2__["default"]
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes = props.attributes,
+        episodeTitle = _props$attributes.episodeTitle,
+        episodeImage = _props$attributes.episodeImage,
+        setAttributes = props.setAttributes;
+
+    var onChangeEpisodeTtitle = function onChangeEpisodeTtitle(newEpisodeTitle) {
+      setAttributes({
+        episodeTitle: newEpisodeTitle
+      });
+    };
+
+    var onImageSelect = function onImageSelect(media) {
+      setAttributes({
+        episodeImage: media.sizes.podkitFeatImg.url
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "".concat(className, " podkit-block podkit-static")
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figure", {
+      className: "podkit-logo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: episodeImage,
+      alt: "logo"
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onImageSelect,
+      value: episodeImage,
+      render: function render(_ref) {
+        var open = _ref.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Button, {
+          onClick: open
+        }, "Open Media Library");
+      }
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-info"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-nameplate"
+    }, __('The Binaryville Podcast', 'podkit')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-title"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      placeholder: __('Enter your title', 'podkit'),
+      value: episodeTitle,
+      onChange: onChangeEpisodeTtitle
+    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-cta"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: "#"
+    }, __('Like & Subscribe', 'podkit'))));
+  },
+  save: function save(props) {
+    var _props$attributes2 = props.attributes,
+        episodeTitle = _props$attributes2.episodeTitle,
+        episodeImage = _props$attributes2.episodeImage;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-block podkit-static"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figure", {
+      className: "podkit-logo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: episodeImage,
+      alt: "logo"
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-info"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-nameplate"
+    }, __('The Binaryville Podcast', 'podkit')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-title"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      value: episodeTitle
+    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "podkit-cta"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: "#"
+    }, __('Like & Subscribe', 'podkit'))));
+  }
+});
+
+/***/ }),
+
 /***/ "./src/bv-logo-white.svg":
 /*!*******************************!*\
   !*** ./src/bv-logo-white.svg ***!
@@ -227,7 +443,11 @@ var SvgBvLogo = function SvgBvLogo(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _01_static__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./01-static */ "./src/01-static/index.js");
+/* harmony import */ var _02_editable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./02-editable */ "./src/02-editable/index.js");
+/* harmony import */ var _03_media__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./03-media */ "./src/03-media/index.js");
 //import blocks as component
+
+
 
 
 /***/ }),

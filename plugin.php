@@ -21,7 +21,7 @@ function podkit_load_textdoamin() {
  */
 add_action( 'init', 'podkit_add_image_size' );
 function podkit_add_image_size() {
-	add_image_size( 'podkitFeatImage', 250, 250, [ 'center', 'center' ] );
+	add_image_size( 'podkitFeatImg', 250, 250, [ 'center', 'center' ] );
 }
 
 /**
@@ -63,47 +63,38 @@ function podkit_register_blocks() {
 	}
 
 	// Register the block editor scripts
-	wp_register_script(
-		'podkit-editor-script',                                             //label
+	wp_register_script( 'podkit-editor-script',                                             //label
 		plugins_url( 'build/index.js', __FILE__ ),                          //script file
 		[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ],              //dependencies
 		filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' ) //set version as file
 	);
 
 	// Register the block editor styles
-	wp_register_style(
-		'podkit-editor-style',
-		plugins_url('build/editor.css', __FILE__),
-		['wp-edit_blocks'],
-		filemtime(plugin_dir_path(__FILE__).'build/editor.css')
-	);
+	wp_register_style( 'podkit-editor-style', plugins_url( 'build/editor.css', __FILE__ ), [ 'wp-edit_blocks' ], filemtime( plugin_dir_path( __FILE__ ) . 'build/editor.css' ) );
 
 	// Register the front-end styles
-	wp_register_style(
-		'podkit-frontend-styles',
-		plugins_url('build/style.css', __FILE__),
-		[],
-		filemtime(plugin_dir_path(__FILE__).'build/style.css')
-	);
+	wp_register_style( 'podkit-frontend-styles', plugins_url( 'build/style.css', __FILE__ ), [], filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' ) );
 
 	//Array of blocks created in this plugin
 	$blocks = [
-		'podkit/static'
+		'podkit/static',
+		'podkit/editable',
+		'podkit/media',
 	];
 
 	// Loop through the $blocks and register each block with the same script and styles
-	foreach ($blocks as $block){
-		register_block_type($block, [
+	foreach ( $blocks as $block ) {
+		register_block_type( $block, [
 			'editor_script' => 'podkit-editor-script',
-			'editor_style' => 'podkit-editor-style',
-			'style' => 'podkit-frontend-styles',
-		]);
+			'editor_style'  => 'podkit-editor-style',
+			'style'         => 'podkit-frontend-styles',
+		] );
 	}
 
-	if(function_exists('wp_set_script_translations')){
+	if ( function_exists( 'wp_set_script_translations' ) ) {
 		/**
 		 * Adds internalization support
 		 */
-		wp_set_script_translations('podkit-editor-script', 'podkit');
+		wp_set_script_translations( 'podkit-editor-script', 'podkit' );
 	}
 }
